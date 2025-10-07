@@ -83,10 +83,10 @@ export default function HomePage() {
               muted
               playsInline
               className="w-full h-auto"
-              style={{ aspectRatio: '1320 / 742.5' }}
+              style={{ objectFit: 'contain' }}
             >
               <source
-                src="https://gist.ai/wp-content/uploads/2025/09/compressed_gist-answers-anim-website-1920x1080-01.mp4"
+                src="/home/videos/AskAnythingHomepageloop.mp4"
                 type="video/mp4"
               />
             </video>

@@ -5,26 +5,13 @@ import { Linkedin, Youtube, Twitter } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-grimace text-white">
-      <div className="container mx-auto px-6 md:px-12">
-        {/* Logo Section */}
-        <div className="pt-36 pb-44">
-          <Link href="/">
-            <Image
-              src="https://gist.ai/wp-content/uploads/2025/09/logo-footer.png"
-              alt="Gist AI"
-              width={135}
-              height={40}
-              className="mb-8"
-            />
-          </Link>
-        </div>
-
+      <div className="container mx-auto px-6 md:px-12 py-16">
         {/* Main Footer Content */}
-        <div className="grid md:grid-cols-3 gap-8 md:gap-16 pb-24">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-24">
           {/* Column 1 - Info & Support */}
           <div className="space-y-6">
-            <p className="text-[#9f88bc] mb-5">
-              Gist is ethically designed<br />
+            <p className="text-[#9f88bc]">
+              Ask Anything is ethically designed<br />
               and built by{" "}
               <a
                 href="https://prorata.ai"
@@ -45,13 +32,13 @@ export default function Footer() {
 
             <a
               href="mailto:support@gist.ai"
-              className="block text-lg font-semibold mb-14 hover:text-[#9f88bc] transition-colors"
+              className="block text-lg font-semibold hover:text-[#9f88bc] transition-colors"
             >
               Support
             </a>
 
             {/* Social Icons */}
-            <div className="flex gap-4">
+            <div className="flex gap-4 pt-4">
               <a
                 href="https://bsky.app/profile/prorata.ai"
                 target="_blank"
@@ -99,33 +86,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2 - Products */}
-          <div className="space-y-6">
-            <p className="text-[#ffffff54] text-sm font-semibold">Products</p>
-
-            <Link
-              href="/answers"
-              className="block text-xl font-semibold hover:text-[#9f88bc] transition-colors"
-            >
-              Gist Answers™
-            </Link>
-
-            <Link
-              href="/ads"
-              className="block text-xl font-semibold hover:text-[#9f88bc] transition-colors"
-            >
-              Gist Ads™
-            </Link>
-
-            <Link
-              href="#contact-us"
-              className="block text-xl font-semibold hover:text-[#9f88bc] transition-colors"
-            >
-              Gist Attribution™
-            </Link>
-          </div>
-
-          {/* Column 3 - Legal */}
+          {/* Column 2 - Legal */}
           <div className="space-y-6">
             <p className="text-[#ffffff54] text-sm">
               © 2025 ProrataAI, Inc.<br />
