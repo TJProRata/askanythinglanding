@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Work_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 
-const inter = Inter({
+const workSans = Work_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-work-sans",
   display: "swap",
 });
 
@@ -41,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={workSans.variable}>
       <head>
         {/* Google tag (gtag.js) */}
         <Script
@@ -57,7 +57,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="font-inter antialiased">
+      <body className="font-work-sans antialiased">
         <ConvexClientProvider>{children}</ConvexClientProvider>
       </body>
     </html>

@@ -5,9 +5,9 @@ import { v } from "convex/values";
 export const add = mutation({
   args: { email: v.string() },
   handler: async (ctx, args) => {
-    // Check if email already exists
+    // Check if email already exists in waitlistgetaskanything
     const existing = await ctx.db
-      .query("waitlist")
+      .query("waitlistgetaskanything")
       .withIndex("by_email", (q) => q.eq("email", args.email))
       .first();
 
@@ -15,8 +15,8 @@ export const add = mutation({
       throw new Error("This email is already on the waitlist!");
     }
 
-    // Add to waitlist
-    const id = await ctx.db.insert("waitlist", {
+    // Add to waitlistgetaskanything only
+    const id = await ctx.db.insert("waitlistgetaskanything", {
       email: args.email,
       createdAt: Date.now(),
     });

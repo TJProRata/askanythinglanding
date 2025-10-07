@@ -15,23 +15,19 @@ export default function Header({ onOpenModal }: HeaderProps) {
           {/* Left side - Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <Image
-                src="https://gist.ai/wp-content/uploads/2025/09/gist-logo-dark-TM.svg"
-                alt="Gist AI"
-                width={82}
-                height={31}
-                priority
-              />
+              <span className="text-2xl font-bold text-dark">
+                Ask Anything
+              </span>
             </Link>
           </div>
 
-          {/* Right side - Contact Us */}
+          {/* Right side - Join Waitlist */}
           <div className="flex items-center gap-4">
             <button
               onClick={onOpenModal}
               className="px-6 py-3 border border-[#353535] text-[#353535] rounded-full font-semibold hover:bg-dark hover:text-white hover:border-dark transition-all"
             >
-              Contact Us
+              Join Waitlist
             </button>
           </div>
         </div>

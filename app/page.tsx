@@ -11,11 +11,11 @@ import Accordion from "@/components/ui/Accordion";
 
 const faqItems = [
   {
-    question: "What is Gist Answers?",
-    answer: "Gist Answers is a customizable AI search engine for websites that is tuned to the site's content and enhanced by a licensed library of 100s of trusted publications.",
+    question: "What is Ask Anything?",
+    answer: "Ask Anything is a customizable AI search engine for websites that is tuned to the site's content and enhanced by a licensed library of 100s of trusted publications.",
   },
   {
-    question: "How does Gist Answers benefit publishers and site owners?",
+    question: "How does Ask Anything benefit publishers and site owners?",
     answer: "It keeps users on your website with interactive AI experiences, improving discovery and driving both longer sessions and stronger engagement.",
   },
   {
@@ -23,16 +23,16 @@ const faqItems = [
     answer: 'Visitors benefit by being able to "ask anything" in natural language and get authoritative, explainable answers grounded in your content and other licensed, trusted sources—reducing bounce-backs to general search.',
   },
   {
-    question: "How does Gist Answers ensure responses match my content?",
+    question: "How does Ask Anything ensure responses match my content?",
     answer: "Your content is prioritized—it's tuned to reflect your organization, taxonomy, and expertise first. Trusted sources from other publications fill gaps as needed.",
   },
   {
     question: "What happens when a question goes beyond my coverage?",
-    answer: "When needed, Gist Answers draws from a network of over 700 licensed, high-quality publications in order to ensure visitor questions are answered accurately.",
+    answer: "When needed, Ask Anything draws from a network of over 700 licensed, high-quality publications in order to ensure visitor questions are answered accurately.",
   },
   {
     question: "What types of content and sites do you support?",
-    answer: "Gist Answers is designed to make it simple for you to add powerful, AI-driven search to your site and other digital properties. Content ingestion is seamless through WordPress post endpoints or RSS feeds. Content behind logins can also be ingested, provided we work with you to determine the best approach.",
+    answer: "Ask Anything is designed to make it simple for you to add powerful, AI-driven search to your site and other digital properties. Content ingestion is seamless through WordPress post endpoints or RSS feeds. Content behind logins can also be ingested, provided we work with you to determine the best approach.",
   },
   {
     question: "Do you handle languages other than English?",
@@ -40,7 +40,7 @@ const faqItems = [
   },
   {
     question: "What are the Content Policies required to participate?",
-    answer: "We pride ourselves on having high quality standards. All publishers using Gist Answers are obligated to meet certain minimum standards and compliance with relevant laws.",
+    answer: "We pride ourselves on having high quality standards. All publishers using Ask Anything are obligated to meet certain minimum standards and compliance with relevant laws.",
   },
 ];
 
@@ -51,19 +51,15 @@ export default function HomePage() {
     <>
       <Header onOpenModal={() => setIsModalOpen(true)} />
 
-      {/* Submenu - Gist Answers Lockup */}
+      {/* Submenu - Ask Anything */}
       <section className="bg-white py-4">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <Image
-                src="https://gist.ai/wp-content/uploads/2025/09/lockup-Answr-png.webp"
-                alt="Gist Answers"
-                width={964}
-                height={134}
-                priority
-                className="w-full max-w-md md:max-w-lg"
-              />
+              <h1 className="text-6xl md:text-7xl font-bold whitespace-nowrap">
+                <span className="bg-gradient-to-r from-[#FFAF07] to-[#926DD7] bg-clip-text [-webkit-background-clip:text] text-transparent">Ask</span>{" "}
+                <span className="text-dark">Anything</span>
+              </h1>
             </div>
             <div className="hidden md:flex justify-end">
               <div className="bg-white">
@@ -97,10 +93,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Why Gist Answers Section */}
+        {/* Why Ask Anything Section */}
         <section className="container mx-auto px-6 md:px-12 py-20">
           <h2 className="text-5xl md:text-7xl font-semibold text-center mb-20">
-            Why Gist Answers?
+            Why Ask Anything?
           </h2>
 
           <div className="space-y-20">
@@ -111,7 +107,7 @@ export default function HomePage() {
                   Accurate answers powered by your content—and beyond.
                 </h3>
                 <p className="text-lg">
-                  Tuned to your content and enriched with a fully licensed library of over 700 trusted sources, Gist Answers delivers precise, well-informed answers to nearly any question.
+                  Tuned to your content and enriched with a fully licensed library of over 700 trusted sources, Ask Anything delivers precise, well-informed answers to nearly any question.
                 </p>
               </div>
               <div>
@@ -127,7 +123,7 @@ export default function HomePage() {
 
             {/* Feature 2 */}
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4 md:order-2">
+              <div className="space-y-4">
                 <h3 className="text-3xl md:text-4xl font-semibold">
                   Keeps your visitors on your site.
                 </h3>
@@ -135,7 +131,7 @@ export default function HomePage() {
                   Don't lose visitors to Google. Provide your visitors with fast, reliable AI answers and suggested topics so they can continue to explore your site.
                 </p>
               </div>
-              <div className="md:order-1">
+              <div>
                 <Image
                   src="https://gist.ai/wp-content/uploads/2025/09/why-answers-1-1024x819-png.webp"
                   alt="Keep visitors on site"
@@ -169,7 +165,7 @@ export default function HomePage() {
 
             {/* Feature 4 */}
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4 md:order-2">
+              <div className="space-y-4">
                 <h3 className="text-3xl md:text-4xl font-semibold">
                   Launches in minutes.
                 </h3>
@@ -177,7 +173,7 @@ export default function HomePage() {
                   Install with a short snippet of code— works with WordPress, Webflow, Wix, Ghost, and more.
                 </p>
               </div>
-              <div className="md:order-1">
+              <div>
                 <Image
                   src="https://gist.ai/wp-content/uploads/2025/09/why-answers-4-1024x819-jpg.webp"
                   alt="Easy installation"
@@ -192,11 +188,11 @@ export default function HomePage() {
 
         {/* Try It CTA Section */}
         <section className="py-32 md:py-44 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('https://gist.ai/wp-content/uploads/2025/08/bg2.svg')" }}>
-          <div className="container mx-auto px-6 md:px-12 text-center">
-            <h2 className="text-6xl md:text-8xl font-semibold mb-10">
+          <div className="container mx-auto px-6 md:px-12">
+            <h2 className="text-5xl md:text-7xl font-semibold mb-10 text-[#4E4E4E] max-w-4xl">
               Try it out, it's free.
             </h2>
-            <p className="text-2xl md:text-3xl max-w-4xl mx-auto mb-10">
+            <p className="text-xl md:text-2xl max-w-4xl mb-10 text-[#4E4E4E]">
               You can even earn revenue by displaying relevant sponsored messages that blend naturally into the user experience.
             </p>
             <Button variant="gradient-icon" size="lg" onClick={() => setIsModalOpen(true)}>
@@ -208,10 +204,10 @@ export default function HomePage() {
         {/* Examples Section */}
         <section className="container mx-auto px-6 md:px-12 py-32">
           <h2 className="text-3xl md:text-4xl font-semibold text-center mb-6">
-            See Gist Answers in action
+            See Ask Anything in action
           </h2>
           <p className="text-lg text-center mb-16">
-            Check Gist Answers powering AI search across these example publications.
+            Check Ask Anything powering AI search across these example publications.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -256,8 +252,10 @@ export default function HomePage() {
         {/* Ready CTA Section */}
         <section className="py-64 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('https://gist.ai/wp-content/uploads/2025/08/answers-ready_.png')" }}>
           <div className="container mx-auto px-6 md:px-12 text-center">
-            <h2 className="text-7xl md:text-9xl font-semibold text-gradient-sunset mb-10">
-              Ready?
+            <h2 className="text-7xl md:text-9xl font-semibold mb-10 pb-4">
+              <span className="bg-gradient-to-r from-[#FFAF07] to-[#926DD7] bg-clip-text text-transparent" style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                Ready?
+              </span>
             </h2>
             <Button variant="gradient-icon" size="lg" onClick={() => setIsModalOpen(true)}>
               Join Waitlist

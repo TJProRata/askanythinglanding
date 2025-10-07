@@ -21,7 +21,7 @@ const config: Config = {
         "orange-gradient": "#FFB400",
       },
       fontFamily: {
-        inter: ["var(--font-inter)", "sans-serif"],
+        "work-sans": ["var(--font-work-sans)", "sans-serif"],
       },
       backgroundImage: {
         "gradient-sunset": "linear-gradient(90deg, #FFB400 0%, #F7857C 36%, #7F71FA 100%)",

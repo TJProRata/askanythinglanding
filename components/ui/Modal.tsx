@@ -21,13 +21,21 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
 
   useEffect(() => {
     if (isOpen) {
+      // Calculate scrollbar width before hiding it
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+      // Prevent body scroll and compensate for scrollbar
       document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     } else {
+      // Restore body scroll and remove padding
       document.body.style.overflow = "unset";
+      document.body.style.paddingRight = "0px";
     }
 
     return () => {
       document.body.style.overflow = "unset";
+      document.body.style.paddingRight = "0px";
     };
   }, [isOpen]);
 
