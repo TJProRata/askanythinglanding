@@ -17,7 +17,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const addToWaitlist = useMutation(api.waitlist.add);
+  const addToWaitlist = useMutation(api.waitlist.addAsk);
 
   useEffect(() => {
     if (isOpen) {

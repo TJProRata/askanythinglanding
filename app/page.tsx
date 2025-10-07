@@ -86,7 +86,7 @@ export default function HomePage() {
               style={{ objectFit: 'contain' }}
             >
               <source
-                src="/home/videos/AskAnythingHomepageloop.mp4"
+                src="/videos/AskAnythingHomepageloop.mp4"
                 type="video/mp4"
               />
             </video>
