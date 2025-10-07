@@ -57,13 +57,32 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
         });
       }
 
+      // Track Lead conversion for Meta Pixel
+      if (typeof window !== 'undefined' && (window as any).fbq) {
+        (window as any).fbq('track', 'Lead');
+      }
+
       setTimeout(() => {
         setEmail("");
         setSubmitted(false);
         onClose();
       }, 2000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to join waitlist. Please try again.");
+      // Extract user-friendly error message from Convex error
+      let errorMessage = "Failed to join waitlist. Please try again.";
+
+      if (err instanceof Error) {
+        // Parse Convex error format: "[CONVEX ...] Uncaught Error: MESSAGE at handler ..."
+        const match = err.message.match(/Uncaught Error: (.+?) at /);
+        if (match && match[1]) {
+          errorMessage = match[1];
+        } else {
+          // Fallback: try to extract any meaningful message
+          errorMessage = err.message.split('\n')[0].replace(/^\[CONVEX.*?\]\s*/, '');
+        }
+      }
+
+      setError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
