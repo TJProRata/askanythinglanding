@@ -78,14 +78,24 @@ AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
 // Main component that matches the original API
 export default function AccordionWrapper({ items, allowMultiple = true }: AccordionProps) {
+  const accordionItems = items.map((item, index) => (
+    <AccordionItem key={index} value={`item-${index}`}>
+      <AccordionTrigger>{item.question}</AccordionTrigger>
+      <AccordionContent>{item.answer}</AccordionContent>
+    </AccordionItem>
+  ));
+
+  if (allowMultiple) {
+    return (
+      <Accordion type="multiple" defaultValue={["item-0"]}>
+        {accordionItems}
+      </Accordion>
+    );
+  }
+
   return (
-    <Accordion type={allowMultiple ? "multiple" : "single"} collapsible defaultValue={["item-0"]}>
-      {items.map((item, index) => (
-        <AccordionItem key={index} value={`item-${index}`}>
-          <AccordionTrigger>{item.question}</AccordionTrigger>
-          <AccordionContent>{item.answer}</AccordionContent>
-        </AccordionItem>
-      ))}
+    <Accordion type="single" collapsible defaultValue="item-0">
+      {accordionItems}
     </Accordion>
   );
 }
