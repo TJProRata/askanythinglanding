@@ -84,6 +84,13 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
         });
       }
 
+      // Track form submission in Amplitude
+      if (typeof window !== 'undefined' && (window as any).amplitude) {
+        (window as any).amplitude.track('Join Waitlist Submitted', {
+          email: email
+        });
+      }
+
       setTimeout(() => {
         setEmail("");
         setSubmitted(false);
