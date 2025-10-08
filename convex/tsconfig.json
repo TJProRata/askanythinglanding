@@ -1,9 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "skipLibCheck": true,
     "target": "ESNext",
     "lib": ["ESNext"],
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
     "module": "ESNext",
     "resolveJsonModule": true
   },
