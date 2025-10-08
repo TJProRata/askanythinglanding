@@ -57,9 +57,9 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
         });
       }
 
-      // Track Lead conversion for Meta Pixel
+      // Track Waitlist conversion for Meta Pixel
       if (typeof window !== 'undefined' && (window as any).fbq) {
-        (window as any).fbq('track', 'Lead');
+        (window as any).fbq('track', 'Waitlist');
       }
 
       // Track Lead conversion for TVScientific
