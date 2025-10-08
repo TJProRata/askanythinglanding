@@ -103,6 +103,12 @@ export default function RootLayout({
           `}
         </Script>
         {/* End TVScientific Pixel */}
+
+        {/* Widget Script */}
+        <Script
+          src="https://widget-deploy-hazel.vercel.app/widget.js"
+          strategy="lazyOnload"
+        />
       </head>
       <body className="font-inter antialiased">
         <ConvexClientProvider>{children}</ConvexClientProvider>
