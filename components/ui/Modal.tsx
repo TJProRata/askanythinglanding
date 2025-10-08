@@ -62,6 +62,31 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
         (window as any).fbq('track', 'Lead');
       }
 
+      // Track Lead conversion for TVScientific
+      if (typeof window !== 'undefined') {
+        (function (j: { orderId: string; lastTouchChannel: string }) {
+          var l = 'tvscientific-pix-o-21b0ba9e-3013-4fd3-bdee-8b53298efcd4',
+            s,
+            d,
+            w,
+            e = encodeURIComponent,
+            d = document,
+            w = window.location,
+            p = d.createElement("IMG");
+          s = w.protocol + '//tvspix.com/t.png?t=' + (new Date()).getTime() + '&l=' + l + '&u3=' + e(w.href) + '&u1=lead_generated&u4=' + e(j.orderId) + '&u5=' + e(j.lastTouchChannel);
+          p.setAttribute("src", s);
+          p.setAttribute("height", "0");
+          p.setAttribute("width", "0");
+          p.setAttribute("alt", "");
+          p.style.display = 'none';
+          p.style.position = 'fixed';
+          d.body.appendChild(p);
+        })({
+          orderId: email,
+          lastTouchChannel: "",
+        });
+      }
+
       setTimeout(() => {
         setEmail("");
         setSubmitted(false);
