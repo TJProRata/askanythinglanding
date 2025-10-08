@@ -8,6 +8,7 @@ export default defineSchema({
   waitlistgetaskanything: defineTable({
     email: v.string(),
     createdAt: v.number(),
+    isOauth: v.optional(v.boolean()),
   })
     .index("by_email", ["email"])
     .index("by_createdAt", ["createdAt"]),

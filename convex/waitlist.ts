@@ -50,7 +50,10 @@ export const countGist = query({
 // ============================================
 
 export const addAsk = mutation({
-  args: { email: v.string() },
+  args: {
+    email: v.string(),
+    isOauth: v.optional(v.boolean()),
+  },
   handler: async (ctx, args) => {
     // Check if email already exists
     const existing = await ctx.db
@@ -66,6 +69,7 @@ export const addAsk = mutation({
     const id = await ctx.db.insert("waitlistgetaskanything", {
       email: args.email,
       createdAt: Date.now(),
+      isOauth: args.isOauth ?? false,
     });
 
     return id;

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { api } from "../../convex/_generated/api";
 import Button from "./Button";
@@ -18,7 +18,8 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { signIn } = useAuthActions();
+  const { signIn, signOut } = useAuthActions();
+  const currentUser = useQuery(api.users.current);
   const addToWaitlist = useMutation(api.waitlist.addAsk);
 
   useEffect(() => {
@@ -40,6 +41,90 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
       document.body.style.paddingRight = "0px";
     };
   }, [isOpen]);
+
+  // Handle OAuth callback - add user to waitlist after Google sign-in
+  useEffect(() => {
+    if (currentUser && isOpen && !submitted) {
+      const addOAuthUser = async () => {
+        try {
+          setIsSubmitting(true);
+          await addToWaitlist({
+            email: currentUser.email || "",
+            isOauth: true,
+          });
+          setSubmitted(true);
+
+          // Track conversion for Google Ads
+          if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'conversion', {
+              'send_to': 'AW-17630115188/Hn0UCLTHr6gbEPTq2NZB',
+              'value': 1.0,
+              'currency': 'USD'
+            });
+          }
+
+          // Track Waitlist conversion for Meta Pixel
+          if (typeof window !== 'undefined' && (window as any).fbq) {
+            (window as any).fbq('track', 'Waitlist');
+          }
+
+          // Track Lead conversion for TVScientific
+          if (typeof window !== 'undefined') {
+            (function (j: { orderId: string; lastTouchChannel: string }) {
+              const l = 'tvscientific-pix-o-21b0ba9e-3013-4fd3-bdee-8b53298efcd4';
+              const e = encodeURIComponent;
+              const doc = document;
+              const loc = window.location;
+              const p = doc.createElement("IMG");
+              const s = loc.protocol + '//tvspix.com/t.png?t=' + (new Date()).getTime() + '&l=' + l + '&u3=' + e(loc.href) + '&u1=lead_generated&u4=' + e(j.orderId) + '&u5=' + e(j.lastTouchChannel);
+              p.setAttribute("src", s);
+              p.setAttribute("height", "0");
+              p.setAttribute("width", "0");
+              p.setAttribute("alt", "");
+              p.style.display = 'none';
+              p.style.position = 'fixed';
+              doc.body.appendChild(p);
+            })({
+              orderId: currentUser.email || "",
+              lastTouchChannel: "",
+            });
+          }
+
+          // Track form submission in Amplitude
+          if (typeof window !== 'undefined' && (window as any).amplitude) {
+            (window as any).amplitude.track('Join Waitlist Submitted', {
+              email: currentUser.email || ""
+            });
+          }
+
+          // Sign out user (they only needed to auth for waitlist)
+          await signOut();
+
+          setTimeout(() => {
+            setSubmitted(false);
+            onClose();
+          }, 2000);
+        } catch (err) {
+          let errorMessage = "Failed to join waitlist. Please try again.";
+
+          if (err instanceof Error) {
+            const match = err.message.match(/Uncaught Error: (.+?) at /);
+            if (match && match[1]) {
+              errorMessage = match[1];
+            } else {
+              errorMessage = err.message.split('\n')[0].replace(/^\[CONVEX.*?\]\s*/, '');
+            }
+          }
+
+          setError(errorMessage);
+          await signOut();
+          setIsSubmitting(false);
+        }
+      };
+
+      addOAuthUser();
+    }
+  }, [currentUser, isOpen, submitted, addToWaitlist, signOut]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
