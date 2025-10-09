@@ -82,27 +82,12 @@ export default function RootLayout({
         </noscript>
         {/* End Meta Pixel Code */}
 
-        {/* TVScientific Pixel */}
-        <Script id="tvscientific-pixel" strategy="afterInteractive">
-          {`
-            (function () {
-              var p, s, d, w;
-              d = document;
-              w = window.location;
-              p = d.createElement("IMG");
-              s = w.protocol + "//tvspix.com/t.png?&t=" + (new Date).getTime() + "&l=tvscientific-pix-o-21b0ba9e-3013-4fd3-bdee-8b53298efcd4&u3=" + encodeURIComponent(w.href);
-              p.setAttribute("src", s);
-              p.setAttribute("height", "0");
-              p.setAttribute("width", "0");
-              p.setAttribute("alt", "");
-              p.style.setProperty("display", "none");
-              p.style.setProperty("position", "absolute");
-              p.style.setProperty("visibility", "hidden");
-              d.body.appendChild(p);
-            })();
-          `}
-        </Script>
-        {/* End TVScientific Pixel */}
+
+        {/* Widget Script */}
+        <Script
+          src="https://widget-deploy-hazel.vercel.app/widget.js"
+          strategy="afterInteractive"
+        />
 
         {/* Amplitude Analytics */}
         <Script id="amplitude-init" strategy="afterInteractive">
