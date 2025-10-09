@@ -22,6 +22,10 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
   const currentUser = useQuery(api.users.current);
   const addToWaitlist = useMutation(api.waitlist.addAsk);
 
+  // Determine which OAuth provider to use based on domain
+  const isAskAnything = typeof window !== 'undefined' && window.location.hostname.includes('getaskanything');
+  const googleProviderId = isAskAnything ? 'google-askanything' : 'google-gist';
+
   useEffect(() => {
     if (isOpen) {
       // Calculate scrollbar width before hiding it
@@ -237,7 +241,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
               {/* Google Sign-in Button */}
               <button
                 type="button"
-                onClick={() => void signIn("google")}
+                onClick={() => void signIn(googleProviderId)}
                 disabled={isSubmitting}
                 className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
