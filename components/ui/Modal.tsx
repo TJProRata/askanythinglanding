@@ -131,6 +131,14 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
     setError("");
     setIsSubmitting(true);
 
+    // Track Continue button click (email signup attempt)
+    if (typeof window !== 'undefined' && (window as any).amplitude) {
+      (window as any).amplitude.track('Continue Button Clicked', {
+        email: email,
+        method: 'email'
+      });
+    }
+
     try {
       await addToWaitlist({ email });
       setSubmitted(true);
