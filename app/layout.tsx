@@ -87,16 +87,22 @@ export default function RootLayout({
         <Script
           src="https://cdn.amplitude.com/libs/analytics-browser-2.7.2-min.js.gz"
           strategy="afterInteractive"
-          onLoad={() => {
-            if (typeof window !== 'undefined' && (window as any).amplitude) {
-              (window as any).amplitude.init('555572da12f1ba1b4229a958f7418b12', {
-                defaultTracking: {
-                  pageViews: true
-                }
-              });
-            }
-          }}
         />
+        <Script id="amplitude-init" strategy="afterInteractive">
+          {`
+            (function checkAmplitude() {
+              if (window.amplitude && window.amplitude.init) {
+                window.amplitude.init('555572da12f1ba1b4229a958f7418b12', {
+                  defaultTracking: {
+                    pageViews: true
+                  }
+                });
+              } else {
+                setTimeout(checkAmplitude, 50);
+              }
+            })();
+          `}
+        </Script>
 
         {/* Widget Script */}
         <Script
