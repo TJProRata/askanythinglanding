@@ -28,7 +28,9 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
             onClick={() => {
               // Track button click in Amplitude
               if (typeof window !== 'undefined' && (window as any).amplitude) {
-                (window as any).amplitude.track('Join Waitlist Button Clicked');
+                (window as any).amplitude.track('Join Waitlist Button Clicked', {
+                  site: 'getaskanything'
+                });
               }
               onOpenModal();
             }}
@@ -60,7 +62,9 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                 onClick={() => {
                   // Track button click in Amplitude
                   if (typeof window !== 'undefined' && (window as any).amplitude) {
-                    (window as any).amplitude.track('Join Waitlist Button Clicked');
+                    (window as any).amplitude.track('Join Waitlist Button Clicked', {
+                      site: 'getaskanything'
+                    });
                   }
                   onOpenModal();
                 }}

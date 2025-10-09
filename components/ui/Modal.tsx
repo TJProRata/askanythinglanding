@@ -93,7 +93,9 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
           // Track form submission in Amplitude
           if (typeof window !== 'undefined' && (window as any).amplitude) {
             (window as any).amplitude.track('Join Waitlist Submitted', {
-              email: currentUser.email || ""
+              email: currentUser.email || "",
+              method: 'oauth',
+              site: 'getaskanything'
             });
           }
 
@@ -135,7 +137,8 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
     if (typeof window !== 'undefined' && (window as any).amplitude) {
       (window as any).amplitude.track('Continue Button Clicked', {
         email: email,
-        method: 'email'
+        method: 'email',
+        site: 'getaskanything'
       });
     }
 
@@ -182,7 +185,9 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
       // Track form submission in Amplitude
       if (typeof window !== 'undefined' && (window as any).amplitude) {
         (window as any).amplitude.track('Join Waitlist Submitted', {
-          email: email
+          email: email,
+          method: 'email',
+          site: 'getaskanything'
         });
       }
 
@@ -248,7 +253,9 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
                 onClick={() => {
                   // Track Google OAuth button click in Amplitude
                   if (typeof window !== 'undefined' && (window as any).amplitude) {
-                    (window as any).amplitude.track('Google OAuth Button Clicked');
+                    (window as any).amplitude.track('Google OAuth Button Clicked', {
+                      site: 'getaskanything'
+                    });
                   }
                   void signIn("google", { redirectTo: window.location.origin });
                 }}
