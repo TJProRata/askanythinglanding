@@ -25,7 +25,13 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
           <Button
             variant="gradient-icon"
             size="lg"
-            onClick={onOpenModal}
+            onClick={() => {
+              // Track button click in Amplitude
+              if (typeof window !== 'undefined' && (window as any).amplitude) {
+                (window as any).amplitude.track('Join Waitlist Button Clicked');
+              }
+              onOpenModal();
+            }}
             className="shadow-lg hover:shadow-xl"
           >
             Join Waitlist
@@ -51,7 +57,13 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
               <Button
                 variant="gradient-icon"
                 size="lg"
-                onClick={onOpenModal}
+                onClick={() => {
+                  // Track button click in Amplitude
+                  if (typeof window !== 'undefined' && (window as any).amplitude) {
+                    (window as any).amplitude.track('Join Waitlist Button Clicked');
+                  }
+                  onOpenModal();
+                }}
                 className="shadow-lg hover:shadow-xl"
               >
                 Join Waitlist
