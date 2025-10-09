@@ -88,8 +88,8 @@ export default function RootLayout({
           src="https://cdn.amplitude.com/libs/analytics-browser-2.7.2-min.js.gz"
           strategy="afterInteractive"
           onLoad={() => {
-            if (typeof window !== 'undefined' && window.amplitude) {
-              window.amplitude.init('555572da12f1ba1b4229a958f7418b12', {
+            if (typeof window !== 'undefined' && (window as any).amplitude) {
+              (window as any).amplitude.init('555572da12f1ba1b4229a958f7418b12', {
                 defaultTracking: {
                   pageViews: true
                 }
