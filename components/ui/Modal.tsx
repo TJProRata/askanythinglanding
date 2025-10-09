@@ -237,7 +237,13 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
               {/* Google Sign-in Button */}
               <button
                 type="button"
-                onClick={() => void signIn("google", { redirectTo: window.location.origin })}
+                onClick={() => {
+                  // Track Google OAuth button click in Amplitude
+                  if (typeof window !== 'undefined' && (window as any).amplitude) {
+                    (window as any).amplitude.track('Google OAuth Button Clicked');
+                  }
+                  void signIn("google", { redirectTo: window.location.origin });
+                }}
                 disabled={isSubmitting}
                 className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
