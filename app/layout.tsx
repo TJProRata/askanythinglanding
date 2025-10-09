@@ -116,12 +116,6 @@ export default function RootLayout({
             });
           `}
         </Script>
-
-        {/* Widget Script */}
-        <Script
-          src="https://widget-deploy-hazel.vercel.app/widget.js"
-          strategy="afterInteractive"
-        />
       </head>
       <body className="font-inter antialiased">
         <ConvexClientProvider>{children}</ConvexClientProvider>
