@@ -1,5 +1,6 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
+import { internal } from "./_generated/api";
 
 // ============================================
 // GIST ANSWERS WAITLIST FUNCTIONS
@@ -70,6 +71,11 @@ export const addAsk = mutation({
       email: args.email,
       createdAt: Date.now(),
       isOauth: args.isOauth ?? false,
+    });
+
+    // Send confirmation email (non-blocking)
+    await ctx.scheduler.runAfter(0, internal.email.sendWaitlistConfirmation, {
+      email: args.email,
     });
 
     return id;
