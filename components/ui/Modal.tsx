@@ -17,6 +17,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [oauthProcessed, setOauthProcessed] = useState(false);
 
   const { signIn, signOut } = useAuthActions();
   const currentUser = useQuery(api.users.current);
@@ -43,16 +44,17 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
   }, [isOpen]);
 
   // Handle OAuth callback - add user to waitlist after Google sign-in
+  // This runs when user returns from OAuth, regardless of modal state
   useEffect(() => {
     console.log("[MODAL] OAuth check:", {
       hasUser: !!currentUser,
       email: currentUser?.email,
-      isOpen,
-      submitted
+      oauthProcessed
     });
 
-    if (currentUser && isOpen && !submitted) {
+    if (currentUser && !oauthProcessed) {
       console.log("[MODAL] Adding OAuth user to waitlist:", currentUser.email);
+      setOauthProcessed(true);
 
       const addOAuthUser = async () => {
         try {
@@ -135,7 +137,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
 
       addOAuthUser();
     }
-  }, [currentUser, isOpen, submitted, addToWaitlist, signOut]);
+  }, [currentUser, oauthProcessed, addToWaitlist, signOut]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
