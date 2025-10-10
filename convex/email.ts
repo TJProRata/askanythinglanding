@@ -83,7 +83,7 @@ export const sendWaitlistConfirmation = action({
         `,
       });
 
-      return { success: true, messageId: data.id };
+      return { success: true, messageId: data.data?.id };
     } catch (error) {
       console.error("Error sending email:", error);
       // Don't throw error - we don't want to block waitlist signup if email fails
