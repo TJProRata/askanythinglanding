@@ -10,7 +10,7 @@ interface HeroSectionProps {
 export default function HeroSection({ onOpenModal }: HeroSectionProps) {
   return (
     <>
-      {/* Gradient section with content inside */}
+      {/* Gradient section with content inside - optimized for mobile */}
       <section className="bg-gradient-hero rounded-3xl overflow-hidden mt-8 md:mt-24 mx-6 md:mx-12">
         <div className="grid md:grid-cols-2 gap-y-0 md:gap-8 items-center">
           {/* Content inside gradient (mobile + desktop) */}
