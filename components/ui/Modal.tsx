@@ -66,7 +66,9 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
             email: currentUser.email || "",
             isOauth: true,
           });
+          console.log("[MODAL] Waitlist added successfully, setting submitted=true");
           setSubmitted(true);
+          console.log("[MODAL] submitted state should now be true");
 
           // Track conversion for Google Ads
           if (typeof window !== 'undefined' && window.gtag) {
@@ -121,6 +123,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
             onClose();
           }, 2000);
         } catch (err) {
+          console.error("[MODAL] Error adding OAuth user to waitlist:", err);
           let errorMessage = "Failed to join waitlist. Please try again.";
 
           if (err instanceof Error) {
@@ -132,6 +135,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
             }
           }
 
+          console.log("[MODAL] Error message:", errorMessage);
           setError(errorMessage);
           await signOut();
           setIsSubmitting(false);
@@ -232,6 +236,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
   };
 
   // Show modal if explicitly open OR if we have a submitted state (from OAuth)
+  console.log("[MODAL] Render check:", { isOpen, submitted, shouldRender: isOpen || submitted });
   if (!isOpen && !submitted) return null;
 
   return (
