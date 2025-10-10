@@ -15,7 +15,7 @@ export const sendWaitlistConfirmation = internalAction({
   handler: async (ctx, args) => {
     try {
       const data = await resend.emails.send({
-        from: "Ask Anything <hello@prorata.ai>",
+        from: "Ask Anything <hello@getaskanything.com>",
         to: [args.email],
         subject: "You're on the Ask Anything waitlist! 🎉",
         html: `
