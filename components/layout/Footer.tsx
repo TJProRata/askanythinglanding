@@ -1,8 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Linkedin, Youtube, Twitter } from "lucide-react";
 
-export default function Footer() {
+interface FooterProps {
+  onOpenContactModal: () => void;
+}
+
+export default function Footer({ onOpenContactModal }: FooterProps) {
   return (
     <footer className="bg-grimace text-white">
       <div className="container mx-auto px-6 md:px-12 py-16">
@@ -23,12 +29,12 @@ export default function Footer() {
               </a>
             </p>
 
-            <Link
-              href="#contact-us"
-              className="block text-lg font-semibold hover:text-[#9f88bc] transition-colors"
+            <button
+              onClick={onOpenContactModal}
+              className="block text-lg font-semibold hover:text-[#9f88bc] transition-colors text-left"
             >
               Contact us
-            </Link>
+            </button>
 
             <a
               href="mailto:support@gist.ai"

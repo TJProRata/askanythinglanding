@@ -19,4 +19,19 @@ export default defineSchema({
   })
     .index("by_email", ["email"])
     .index("by_createdAt", ["createdAt"]),
+
+  contactSubmissions: defineTable({
+    firstName: v.string(),
+    lastName: v.string(),
+    email: v.string(),
+    phone: v.optional(v.string()),
+    organization: v.string(),
+    websiteUrl: v.string(),
+    interests: v.array(v.string()),
+    message: v.optional(v.string()),
+    receiveUpdates: v.boolean(),
+    createdAt: v.number(),
+  })
+    .index("by_email", ["email"])
+    .index("by_createdAt", ["createdAt"]),
 });
