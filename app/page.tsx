@@ -58,7 +58,7 @@ export default function HomePage() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h1 className="text-6xl md:text-7xl font-bold whitespace-nowrap">
+              <h1 className="text-4xl md:text-7xl font-bold whitespace-nowrap">
                 <span className="bg-gradient-to-r from-[#FFAF07] to-[#926DD7] bg-clip-text [-webkit-background-clip:text] text-transparent">Ask</span>{" "}
                 <span className="text-dark">Anything</span>
               </h1>
