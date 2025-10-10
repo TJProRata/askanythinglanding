@@ -104,10 +104,11 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Widget Script */}
+        {/* Widget Script - Enable fadeScroll */}
         <Script
           src="https://widget-deploy-hazel.vercel.app/widget.js"
-          strategy="afterInteractive"
+          data-config='{"fadeScroll": true}'
+          strategy="lazyOnload"
         />
       </head>
       <body className="font-inter antialiased">
