@@ -13,6 +13,8 @@ export const sendWaitlistConfirmation = internalAction({
     name: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    console.log("[EMAIL] Sending confirmation to:", args.email);
+
     try {
       const data = await resend.emails.send({
         from: "Ask Anything <hello@getaskanything.com>",
@@ -83,9 +85,10 @@ export const sendWaitlistConfirmation = internalAction({
         `,
       });
 
+      console.log("[EMAIL] Email sent successfully! Message ID:", data.data?.id);
       return { success: true, messageId: data.data?.id };
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("[EMAIL] Error sending email:", error);
       // Don't throw error - we don't want to block waitlist signup if email fails
       return { success: false, error: String(error) };
     }

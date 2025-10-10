@@ -44,7 +44,16 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
 
   // Handle OAuth callback - add user to waitlist after Google sign-in
   useEffect(() => {
+    console.log("[MODAL] OAuth check:", {
+      hasUser: !!currentUser,
+      email: currentUser?.email,
+      isOpen,
+      submitted
+    });
+
     if (currentUser && isOpen && !submitted) {
+      console.log("[MODAL] Adding OAuth user to waitlist:", currentUser.email);
+
       const addOAuthUser = async () => {
         try {
           setIsSubmitting(true);

@@ -73,10 +73,14 @@ export const addAsk = mutation({
       isOauth: args.isOauth ?? false,
     });
 
+    console.log("[WAITLIST] User added, scheduling email for:", args.email);
+
     // Send confirmation email (non-blocking)
     await ctx.scheduler.runAfter(0, internal.email.sendWaitlistConfirmation, {
       email: args.email,
     });
+
+    console.log("[WAITLIST] Email scheduled successfully");
 
     return id;
   },
