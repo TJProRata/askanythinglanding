@@ -267,7 +267,11 @@ export default function HomePage() {
       </main>
 
       <Footer onOpenContactModal={() => setIsContactModalOpen(true)} />
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onOpen={() => setIsModalOpen(true)}
+      />
       <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
     </>
   );

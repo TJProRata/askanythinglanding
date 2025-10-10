@@ -10,9 +10,10 @@ import Button from "./Button";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpen: () => void;
 }
 
-export default function Modal({ isOpen, onClose }: ModalProps) {
+export default function Modal({ isOpen, onClose, onOpen }: ModalProps) {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -64,6 +65,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
             isOauth: true,
           });
           setSubmitted(true);
+          onOpen(); // Open modal to show confirmation
 
           // Track conversion for Google Ads
           if (typeof window !== 'undefined' && window.gtag) {
@@ -137,7 +139,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
 
       addOAuthUser();
     }
-  }, [currentUser, oauthProcessed, addToWaitlist, signOut]);
+  }, [currentUser, oauthProcessed, addToWaitlist, signOut, onOpen, onClose]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
